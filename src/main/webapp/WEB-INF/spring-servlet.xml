@@ -26,6 +26,9 @@
 		<beans:property name="annotatedClasses">
 			<beans:list>
 				<beans:value>br.com.nossopresente.npresent.model.Fornecedor</beans:value>
+				<beans:value>br.com.nossopresente.npresent.model.Produto</beans:value>
+				<beans:value>br.com.nossopresente.npresent.model.Evento</beans:value>
+				<beans:value>br.com.nossopresente.npresent.model.EventoProduto</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">

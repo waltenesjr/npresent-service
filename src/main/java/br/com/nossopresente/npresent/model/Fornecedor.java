@@ -2,6 +2,7 @@ package br.com.nossopresente.npresent.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "fornecedor")
@@ -26,6 +27,9 @@ public class Fornecedor implements Serializable {
     @Lob
     @Column(name = "imagem")
     private byte[] imagem;
+
+    @OneToMany(mappedBy = "fornecedor")
+    private List<Evento> eventos;
 
     public Fornecedor() {
     }
@@ -76,5 +80,13 @@ public class Fornecedor implements Serializable {
 
     public void setImagem(byte[] imagem) {
         this.imagem = imagem;
+    }
+
+    public List<Evento> getEventos() {
+        return eventos;
+    }
+
+    public void setEventos(List<Evento> eventos) {
+        this.eventos = eventos;
     }
 }

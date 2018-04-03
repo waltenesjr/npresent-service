@@ -25,7 +25,7 @@ public class Evento implements Serializable {
     private TipoEventoEnum tipo;
 
     @ManyToOne
-    @JoinColumn(name = "id_fornecedor", referencedColumnName = "id_fornecedor", nullable = false)
+    @JoinColumn(name = "id_fornecedor")
     private Fornecedor fornecedor;
 
     @OneToMany(mappedBy = "evento")

@@ -15,11 +15,11 @@ public class EventoProduto implements Serializable {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "id_evento", referencedColumnName = "id_evento", nullable = false)
+    @JoinColumn(name = "id_evento")
     private Evento evento;
 
     @ManyToOne
-    @JoinColumn(name = "id_produto", referencedColumnName = "id_produto", nullable = false)
+    @JoinColumn(name = "id_produto")
     private Produto produto;
 
     public EventoProduto() {

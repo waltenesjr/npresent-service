@@ -3,6 +3,7 @@ package br.com.nossopresente.npresent.service;
 import br.com.nossopresente.npresent.bean.ProdutoBean;
 import br.com.nossopresente.npresent.hibernate.HibernateDAO;
 import br.com.nossopresente.npresent.model.Produto;
+import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +20,7 @@ public class ProdutoService {
     @Transactional
     public List<ProdutoBean> getAll() {
         List<ProdutoBean> list = new ArrayList<>();
-        for (Produto p : (List<Produto>) dao.createCriteria(Produto.class).list()) {
+        for (Produto p : (List<Produto>) dao.createCriteria(Produto.class).addOrder(Order.desc("id")).list()) {
             list.add(modelToBean(p));
         }
         return list;
