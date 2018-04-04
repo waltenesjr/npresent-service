@@ -24,14 +24,24 @@ public class Evento implements Serializable {
     @Column(name = "tipo")
     private TipoEventoEnum tipo;
 
+    @Lob
+    @Column(name = "imagem")
+    private byte[] imagem;
+
     @ManyToOne
-    @JoinColumn(name = "id_fornecedor")
+    @JoinColumn(name = "id_fornecedor", referencedColumnName = "id", nullable = false)
     private Fornecedor fornecedor;
 
     @OneToMany(mappedBy = "evento")
     private List<EventoProduto> eventoProdutos;
 
     public Evento() {
+    }
+
+    public Evento(String nome, TipoEventoEnum tipo, Fornecedor fornecedor) {
+        this.nome = nome;
+        this.tipo = tipo;
+        this.fornecedor = fornecedor;
     }
 
     public int getId() {
@@ -56,6 +66,14 @@ public class Evento implements Serializable {
 
     public void setTipo(TipoEventoEnum tipo) {
         this.tipo = tipo;
+    }
+
+    public byte[] getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(byte[] imagem) {
+        this.imagem = imagem;
     }
 
     public Fornecedor getFornecedor() {

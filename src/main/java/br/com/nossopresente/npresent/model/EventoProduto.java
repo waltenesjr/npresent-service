@@ -15,14 +15,19 @@ public class EventoProduto implements Serializable {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "id_evento")
+    @JoinColumn(name = "id_evento", referencedColumnName = "id", nullable = false)
     private Evento evento;
 
     @ManyToOne
-    @JoinColumn(name = "id_produto")
+    @JoinColumn(name = "id_produto", referencedColumnName = "id", nullable = false)
     private Produto produto;
 
     public EventoProduto() {
+    }
+
+    public EventoProduto(Evento evento, Produto produto) {
+        this.evento = evento;
+        this.produto = produto;
     }
 
     public int getId() {

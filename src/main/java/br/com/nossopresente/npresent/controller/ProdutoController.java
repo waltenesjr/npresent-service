@@ -14,7 +14,7 @@ public class ProdutoController {
     @Autowired
     ProdutoService service;
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET, headers = "Accept=application/json")
+    @RequestMapping(value = "all", method = RequestMethod.GET, headers = "Accept=application/json")
     public @ResponseBody ResponseEntity<?> getAll() {
         try {
             return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
@@ -23,7 +23,7 @@ public class ProdutoController {
         }
     }
 
-    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
+    @RequestMapping(value = "get/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
     public @ResponseBody ResponseEntity<?> get(@PathVariable int id) {
         try {
             return new ResponseEntity<>(service.get(id), HttpStatus.OK);
@@ -32,8 +32,18 @@ public class ProdutoController {
         }
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST, headers = "Accept=application/json")
+    @RequestMapping(value = "add", method = RequestMethod.POST, headers = "Accept=application/json")
     public void add(@RequestBody ProdutoBean bean) {
         service.add(bean);
+    }
+
+    @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE, headers = "Accept=application/json")
+    public void delete(@PathVariable("id") int id) {
+        service.delete(id);
+    }
+
+    @RequestMapping(value = "update", method = RequestMethod.PUT, headers = "Accept=application/json")
+    public void update(@RequestBody ProdutoBean bean) {
+        service.update(bean);
     }
 }
