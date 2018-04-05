@@ -8,6 +8,8 @@ import br.com.nossopresente.npresent.model.Evento;
 import br.com.nossopresente.npresent.model.EventoProduto;
 import br.com.nossopresente.npresent.model.Fornecedor;
 import br.com.nossopresente.npresent.model.Produto;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,6 +42,14 @@ public class EventoService {
         Evento e = EventoBuilder.beanToModel(bean, (Fornecedor) dao.get(Fornecedor.class, bean.getFornecedor()));
         dao.persist(e);
         addProdutos(bean.getProdutos(), e);
+    }
+
+    @Transactional
+    public Evento findByNomeAndFornecedor(String nome, int fornecedor) {
+        Criteria criteria = dao.createCriteria(Evento.class)
+                .add(Restrictions.eq("nome", nome))
+                .add(Restrictions.eq("fornecedor.id", fornecedor));
+        return (Evento) criteria.uniqueResult();
     }
 
     private void addProdutos(List<ProdutoBean> listBean, Evento e) {

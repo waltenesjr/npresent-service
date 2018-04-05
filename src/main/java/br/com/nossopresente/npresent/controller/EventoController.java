@@ -32,6 +32,15 @@ public class EventoController {
         }
     }
 
+    @RequestMapping(value = "/get-evento-fornecedor", method = RequestMethod.GET, headers = "Accept=application/json")
+    public @ResponseBody ResponseEntity<?> get() {
+        try {
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(ex, HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @RequestMapping(value = "/add", method = RequestMethod.POST, headers = "Accept=application/json")
     public void add(@RequestBody EventoBean bean) {
         service.add(bean);
