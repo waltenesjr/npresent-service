@@ -39,10 +39,10 @@ public class EventoService {
     public void add(EventoBean bean) {
         Evento e = EventoBuilder.beanToModel(bean, (Fornecedor) dao.get(Fornecedor.class, bean.getFornecedor()));
         dao.persist(e);
-        addProduto(bean.getProdutos(), e);
+        addProdutos(bean.getProdutos(), e);
     }
 
-    private void addProduto(List<ProdutoBean> listBean, Evento e) {
+    private void addProdutos(List<ProdutoBean> listBean, Evento e) {
         for (ProdutoBean bean : listBean) {
             dao.persist(new EventoProduto(e, (Produto) dao.get(Produto.class, bean.getId())));
         }

@@ -38,9 +38,10 @@ public class Evento implements Serializable {
     public Evento() {
     }
 
-    public Evento(String nome, TipoEventoEnum tipo, Fornecedor fornecedor) {
+    public Evento(String nome, TipoEventoEnum tipo, byte[] imagem, Fornecedor fornecedor) {
         this.nome = nome;
         this.tipo = tipo;
+        this.imagem = imagem;
         this.fornecedor = fornecedor;
     }
 
