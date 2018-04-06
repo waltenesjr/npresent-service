@@ -35,4 +35,11 @@ public class FornecedorService {
     public void add(FornecedorBean bean) {
         dao.persist(FornecedorBuilder.beanToModel(bean));
     }
+
+    @Transactional
+    public String getLinkLoja(int id) {
+        Fornecedor f = (Fornecedor) dao.get(Fornecedor.class, id);
+        int pos = f.getLoja().indexOf("?");
+        return f.getLoja().substring(pos, f.getLoja().length());
+    }
 }

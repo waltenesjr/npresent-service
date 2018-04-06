@@ -45,11 +45,11 @@ public class EventoService {
     }
 
     @Transactional
-    public Evento findByNomeAndFornecedor(String nome, int fornecedor) {
+    public EventoBean findByNomeAndFornecedor(String nome, int fornecedor) {
         Criteria criteria = dao.createCriteria(Evento.class)
                 .add(Restrictions.eq("nome", nome))
                 .add(Restrictions.eq("fornecedor.id", fornecedor));
-        return (Evento) criteria.uniqueResult();
+        return EventoBuilder.modelToBean((Evento) criteria.uniqueResult());
     }
 
     private void addProdutos(List<ProdutoBean> listBean, Evento e) {
